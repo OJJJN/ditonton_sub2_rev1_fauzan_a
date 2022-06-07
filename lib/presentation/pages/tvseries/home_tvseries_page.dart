@@ -11,42 +11,46 @@ import 'package:'
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
-    '/domain'
-    '/entities'
-    '/movie.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/pages/movie_detail_page.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/pages'
-    '/popular_movies_page.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/pages'
-    '/top_rated_movies_page.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
     '/common'
     '/state_enum.dart';
 
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
+    '/domain'
+    '/entities'
+    '/tvseries.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/pages'
+    '/tvseries'
+    '/popular_tvseries_page.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/pages'
+    '/tvseries'
+    '/top_rated_tvseries_page.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/pages'
+    '/tvseries'
+    '/tvseries_detail_page.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
     '/provider'
-    '/movie_list_notifier.dart';
+    '/tvseries_list_notifier.dart';
 
 
 import 'package:'
@@ -60,32 +64,30 @@ import 'package:'
 
 
 
-class HomeMoviePage
+class HomeTvSeriesPage
     extends
     StatefulWidget {
-  static const ROUTE_NAME = '/homeMovie';
+  static const ROUTE_NAME = '/homeTvSeries';
 
-  const HomeMoviePage(
-      {Key? key}) : super(key: key);
+  const HomeTvSeriesPage({Key? key}) : super(key: key);
   @override
-  _HomeMoviePageState createState()
-  => _HomeMoviePageState();
+  _HomeTvSeriesPageState createState() =>
+      _HomeTvSeriesPageState();
 }
 
-class _HomeMoviePageState
-    extends State<
-        HomeMoviePage> {
+class _HomeTvSeriesPageState
+    extends State<HomeTvSeriesPage> {
   @override
   void initState() {
     super.initState();
     Future.microtask(
             () => Provider.of<
-                MovieListNotifier>(
+                TvSeriesListNotifier>(
                 context,
                 listen: false)
-          ..fetchNowPlayingMovies()
-          ..fetchPopularMovies()
-          ..fetchTopRatedMovies());
+          ..fetchNowPlayingTvSeries()
+          ..fetchPopularTvSeries()
+          ..fetchTopRatedTvSeries());
   }
 
   @override
@@ -93,8 +95,7 @@ class _HomeMoviePageState
       BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets
-            .all(
+        padding: const EdgeInsets.all(
             8.0),
         child: SingleChildScrollView(
           child: Column(
@@ -105,32 +106,22 @@ class _HomeMoviePageState
                 'Now Playing',
                 style: kHeading6,
               ),
-              Consumer<MovieListNotifier>(
+              Consumer<TvSeriesListNotifier>(
                   builder: (
-                      context,
-                      data,
-                      child) {
-                final
-                state
-                = data
+                      context, data, child) {
+                final state = data
                     .nowPlayingState;
-                if (state ==
-                    RequestState
-                        .Loading) {
+                if (state == RequestState
+                    .Loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state ==
-                    RequestState
-                        .Loaded) {
-                  return MovieList(
-                      data
-                          .nowPlayingMovies
-                  );
+                } else if (state == RequestState
+                    .Loaded) {
+                  return TvSeriesList(data
+                      .nowPlayingTvSeries);
                 } else {
-                  return const Text(
-                      'Failed'
-                  );
+                  return const Text('Failed');
                 }
               }),
               _buildSubHeading(
@@ -138,37 +129,28 @@ class _HomeMoviePageState
                 onTap: () =>
                     Navigator.pushNamed(
                         context,
-                        PopularMoviesPage
-                            .ROUTE_NAME
-                    ),
+                        PopularTvSeriesPage
+                            .ROUTE_NAME),
               ),
-              Consumer<MovieListNotifier>(
+              Consumer<TvSeriesListNotifier>(
                   builder: (
                       context,
                       data,
                       child) {
-                final
-                state
-                = data
-                    .popularMoviesState;
-
-
-                if (state
-                    == RequestState
-                        .Loading) {
+                final state = data
+                    .popularTvSeriesState;
+                if (state == RequestState
+                    .Loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state
-                    == RequestState
-                        .Loaded) {
-                  return MovieList(
-                      data
-                          .popularMovies);
+                } else if (state == RequestState
+                    .Loaded) {
+                  return TvSeriesList(
+                      data.popularTvSeries);
                 } else {
                   return const Text(
-                      'Failed'
-                  );
+                      'Failed');
                 }
               }),
               _buildSubHeading(
@@ -176,33 +158,26 @@ class _HomeMoviePageState
                 onTap: () =>
                     Navigator.pushNamed(
                         context,
-                        TopRatedMoviesPage
+                        TopRatedTvSeriesPage
                             .ROUTE_NAME),
               ),
-              Consumer<MovieListNotifier>(
-                  builder: (
-                      context,
-                      data,
-                      child) {
-                final state = data.
-                topRatedMoviesState;
-                if (state ==
-                    RequestState
+              Consumer<TvSeriesListNotifier>(
+                  builder: (context, data, child) {
+                final state = data
+                    .topRatedTvSeriesState;
+                if (state == RequestState
                     .Loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state ==
-                    RequestState
-                        .Loaded) {
-                  return MovieList(
-                      data
-                          .topRatedMovies
-                  );
+                } else if (
+                state == RequestState
+                    .Loaded) {
+                  return TvSeriesList(data
+                      .topRatedTvSeries);
                 } else {
                   return const Text(
-                      'Failed'
-                  );
+                      'Failed');
                 }
               }),
             ],
@@ -212,9 +187,8 @@ class _HomeMoviePageState
     );
   }
 
-  Row _buildSubHeading(
-      {required String title,
-        required Function() onTap}) {
+  Row _buildSubHeading({required String title,
+    required Function() onTap}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment
           .spaceBetween,
@@ -227,17 +201,13 @@ class _HomeMoviePageState
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(
-                8.0
-            ),
+                8.0),
             child: Row(
-              children: const [
-                Text(
-                    'See More'),
+              children: const [Text(
+                  'See More'),
                 Icon(
                     Icons
-                        .arrow_forward_ios
-                )
-              ],
+                        .arrow_forward_ios)],
             ),
           ),
         ),
@@ -246,20 +216,19 @@ class _HomeMoviePageState
   }
 }
 
-class MovieList
+class TvSeriesList
     extends
     StatelessWidget {
+  final List<TvSeries>
+  tvSeries;
 
-  final
-  List<Movie>
-  movies;
-
-  const MovieList(
-      this.movies,
+  const TvSeriesList(
+      this.tvSeries,
       {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+      BuildContext context) {
     return SizedBox(
       height: 200,
       child: ListView
@@ -267,40 +236,36 @@ class MovieList
         scrollDirection: Axis
             .horizontal,
         itemBuilder: (
-            context,
-            index) {
-          final
-          movie = movies[
-            index
-          ];
+            context, index) {
+          final tvseries = tvSeries[
+            index];
           return Container(
-            padding: const EdgeInsets
-                .all(
+            padding: const EdgeInsets.all(
                 8),
             child: InkWell(
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage
+                  TvSeriesDetailPage
                       .ROUTE_NAME,
-                  arguments: movie.id,
+                  arguments: tvseries
+                      .id,
                 );
               },
               child: ClipRRect(
-                borderRadius: const BorderRadius
-                    .all(
-                    Radius
-                        .circular(
+                borderRadius: const BorderRadius.all(
+                    Radius.circular(
                         16)
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                  placeholder: (context, url)
-                  => const Center(
+                  imageUrl: '$BASE_IMAGE_URL${tvseries
+                      .posterPath}',
+                  placeholder: (
+                      context,
+                      url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (
-                      context,
+                  errorWidget: (context,
                       url,
                       error) => const Icon(
                       Icons
@@ -311,8 +276,7 @@ class MovieList
             ),
           );
         },
-        itemCount: movies
-            .length,
+        itemCount: tvSeries.length,
       ),
     );
   }
