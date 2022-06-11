@@ -6,3 +6,4 @@ File ini adalah file revisi dari submision flutter expert 2
 Ditonton merupakan sebuah aplikasi katalog film yang dikembangkan oleh Dicoding Indonesia sebagai contoh proyek aplikasi untuk kelas Menjadi Flutter Developer Expert.
 
 ![image info](./screenshootofaplication/screenshootapp.png)
+![image info](./screenshootofaplication/screenshootapp2.png)
