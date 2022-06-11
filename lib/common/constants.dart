@@ -49,9 +49,15 @@ const Color kGrey =
         0xFF303030
     );
 
+//colors
+const Color kGreenColor =
+Color(
+    0xFF0C9869
+);
+
 // text style
 final TextStyle kHeading5 =
-GoogleFonts.poppins(
+GoogleFonts.karma(
     fontSize: 23,
     fontWeight:
     FontWeight
@@ -60,7 +66,7 @@ GoogleFonts.poppins(
 
 // text style
 final TextStyle kHeading6 =
-GoogleFonts.poppins(
+GoogleFonts.karma(
     fontSize:
     19,
     fontWeight:
@@ -72,7 +78,7 @@ GoogleFonts.poppins(
 
 // text style
 final TextStyle kSubtitle =
-GoogleFonts.poppins(
+GoogleFonts.karma(
     fontSize:
     15,
     fontWeight:
@@ -84,7 +90,7 @@ GoogleFonts.poppins(
 
 // text style
 final TextStyle kBodyText =
-GoogleFonts.poppins(
+GoogleFonts.karma(
     fontSize:
     13,
     fontWeight:

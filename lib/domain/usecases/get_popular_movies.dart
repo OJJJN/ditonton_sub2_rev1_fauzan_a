@@ -2,10 +2,6 @@ import 'package:dartz'
     '/dartz.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
 
 
 import 'package:'
@@ -35,9 +31,10 @@ class GetPopularMovies {
       );
 
   Future<
-      Either<Failure,
-          List<Movie
-          >>> execute(
+      Either<
+      dynamic,
+          List<Movie>>>
+  execute(
       ) {
     return
       repository

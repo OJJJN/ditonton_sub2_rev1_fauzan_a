@@ -1,14 +1,15 @@
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/state_enum.dart';
+//normal package
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-
+//bloc package
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
-    '/provider'
-    '/popular_tvseries_notifier.dart';
+    '/bloc'
+    '/tvseries'
+    '/popular_tvseries'
+    '/popular_tvseries_bloc.dart';
 
 
 import 'package:'
@@ -18,100 +19,134 @@ import 'package:'
     '/tvseries_card_list.dart';
 
 
-import 'package:'
-    'flutter'
-    '/material.dart';
 
 
-import 'package:'
-    'provider'
-    '/provider.dart';
+class
+PopularTvSeriesPage
+    extends StatefulWidget {
 
+  static const ROUTE_NAME =
+      '/popular-tvseries';
 
-
-class PopularTvSeriesPage
-    extends
-    StatefulWidget {
-  static const ROUTE_NAME = '/popular-tvseries';
-
-  const PopularTvSeriesPage({Key? key}) :
-        super(key: key);
 
   @override
-  _PopularMoviesPageState createState() =>
-      _PopularMoviesPageState();
+  _PopularTvSeriesPageState
+  createState()
+  => _PopularTvSeriesPageState(
+  );
+
 }
 
-class _PopularMoviesPageState
+
+
+class
+_PopularTvSeriesPageState
     extends State<
         PopularTvSeriesPage> {
+
+
   @override
-  void initState() {
+  void initState(
+      ) {
     super
-        .initState();
+        .initState(
+    );
+
+
     Future
-        .microtask(() =>
-        Provider.of<PopularTvSeriesNotifier>(
-            context,
-            listen: false)
-            .fetchPopularTvSeries());
+        .microtask((
+        ){
+      context
+          .read<
+          PopularTvseriesBloc>()
+          .add(
+          PopularTvseriesGetEvent()
+      );
+    });
   }
 
   @override
   Widget build(
-      BuildContext context) {
+      BuildContext
+      context
+      ) {
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-            'Popular Movies'),
+        title: Text(
+            'Popular Tv Series'
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets
+        padding:
+        const EdgeInsets
             .all(
-            8.0),
-        child: Consumer<
-            PopularTvSeriesNotifier>(
+            8.0
+        ),
+
+        child: BlocBuilder<
+            PopularTvseriesBloc,
+            PopularTvseriesState>(
           builder: (
               context,
-              data,
-              child) {
+              state) {
+
+
             if (
-            data.state ==
-                RequestState
-                    .Loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+            state
+            is PopularTvseriesLoading
+            ) {
+
+              return
+                const Center(
+                child: CircularProgressIndicator(
+                ),
               );
+
+
             } else if (
-            data.state ==
-                RequestState
-                    .Loaded) {
-              return ListView
-                  .builder(
+            state
+            is PopularTvseriesLoaded
+            ) {
+
+              return
+                ListView
+                    .builder(
                 itemBuilder: (
                     context,
                     index) {
+
+
                   final
-                  tvseries
-                  = data
-                      .tvseries[
+                  tvserie
+                  = state
+                      .result[
                         index
                   ];
-                  return TvSeriesCard(
-                      tvseries
-                  );
+
+
+                  return
+                    TvSeriesCard(
+                        tvserie
+                    );
+
+
                 },
-                itemCount: data
-                    .tvseries
+                itemCount:
+                state
+                    .result
                     .length,
               );
+
+
             } else {
               return Center(
-                key: const Key(
-                    'error_message'),
+                key: Key(
+                    'error_message'
+                ),
                 child: Text(
-                    data
-                        .message),
+                    "Error"
+                ),
               );
             }
           },

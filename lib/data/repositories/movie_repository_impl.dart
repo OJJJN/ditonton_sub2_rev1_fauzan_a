@@ -52,14 +52,8 @@ import 'package:'
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/exception.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
+    '/common/'
+    'commutils.dart';
 
 
 

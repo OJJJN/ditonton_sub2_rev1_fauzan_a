@@ -3,10 +3,6 @@ import 'package:'
     '/dartz.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
 
 
 import 'package:'
@@ -34,8 +30,11 @@ class SearchTvSeries {
           .repository
       );
 
-  Future<Either<Failure,
-      List<TvSeries>>>
+  Future<
+      Either<
+          dynamic,
+          List<
+              TvSeries>>>
   execute(
       String query) {
     return repository

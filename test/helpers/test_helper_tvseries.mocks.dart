@@ -7,7 +7,7 @@ import 'dart:convert' as _i16;
 import 'dart:typed_data' as _i17;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:ditonton_sub2_rev1_fauzan_a/common/failure.dart' as _i7;
+import 'package:ditonton_sub2_rev1_fauzan_a/common/commutils.dart' as _i7;
 import 'package:ditonton_sub2_rev1_fauzan_a/data/datasources/db/database_helper_tvseries.dart'
     as _i14;
 import 'package:ditonton_sub2_rev1_fauzan_a/data/datasources/tvseries_local_data_source.dart'

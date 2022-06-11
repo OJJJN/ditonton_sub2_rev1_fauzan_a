@@ -1,7 +1,7 @@
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/exception.dart';
+    '/common/'
+    'commutils.dart';
 
 
 import 'package:'

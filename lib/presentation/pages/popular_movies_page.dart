@@ -1,14 +1,7 @@
+//normal package
 import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/state_enum.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/popular_movies_notifier.dart';
+    'flutter_bloc'
+    '/flutter_bloc.dart';
 
 
 import 'package:'
@@ -22,111 +15,150 @@ import 'package:'
     'flutter'
     '/material.dart';
 
+//bloc package
 
 import 'package:'
-    'provider'
-    '/provider.dart';
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/popular_movies'
+    '/movie_popular_bloc.dart';
 
 
 
-class PopularMoviesPage
+
+class
+PopularMoviesPage
     extends
     StatefulWidget {
-  static const ROUTE_NAME =
-      '/popular-movie'
-  ;
+  static
+  const
+  ROUTE_NAME
+  = '/popular-movie';
 
-  const PopularMoviesPage({Key? key}) : super(key: key);
+
 
   @override
-  _PopularMoviesPageState createState(
-      ) => _PopularMoviesPageState(
+  _PopularMoviesPageState
+  createState()
+  => _PopularMoviesPageState(
   );
+
 }
 
-class _PopularMoviesPageState
+
+
+class
+_PopularMoviesPageState
     extends
-    State<PopularMoviesPage> {
+    State<
+        PopularMoviesPage
+    > {
 
   @override
-  void initState() {
+  void initState(
+      ) {
+
     super
         .initState(
     );
+
+
     Future
         .microtask(
-            () =>
-        Provider
-            .of<PopularMoviesNotifier>(
-            context,
-            listen: false)
-            .fetchPopularMovies()
-    );
+            (
+            ) {
+      context
+          .read<
+          MoviePopularBloc>()
+          .add(
+          MoviePopularGetEvent()
+      );
+    });
   }
+
 
   @override
   Widget build(
-      BuildContext context) {
+      BuildContext
+      context
+      ) {
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
             'Popular Movies'
         ),
       ),
+
       body: Padding(
-        padding: const EdgeInsets
+        padding: const
+        EdgeInsets
             .all(
             8.0
         ),
-        child: Consumer<PopularMoviesNotifier>(
+
+        child: BlocBuilder<
+            MoviePopularBloc,
+            MoviePopularState>(
+
           builder: (
               context,
-              data,
-              child
+              state
               ) {
+
             if (
-            data
-                .state ==
-                RequestState
-                    .Loading
+            state
+            is
+            MoviePopularLoading
             ) {
-              return const Center(
+
+
+              return
+                const Center(
                 child: CircularProgressIndicator(
                 ),
               );
+
             } else if (
-            data
-                .state ==
-                RequestState
-                    .Loaded
+            state
+            is
+            MoviePopularLoaded
             ) {
-              return ListView
-                  .builder(
+
+              return
+                ListView
+                    .builder(
                 itemBuilder: (
                     context,
                     index
                     ) {
+
                   final
-                  movie =
-                  data
-                      .movies[
+                  movie
+                  = state
+                      .result[
                         index
                   ];
-                  return MovieCard(
-                      movie
-                  );
+
+
+                  return
+                    MovieCard(
+                        movie
+                    );
                 },
-                itemCount: data
-                    .movies
+                itemCount: state
+                    .result
                     .length,
               );
             } else {
               return Center(
-                key: const Key(
+                key: Key(
                     'error_message'
                 ),
+
                 child: Text(
-                    data.message
+                    "Error"
                 ),
               );
             }

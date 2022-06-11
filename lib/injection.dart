@@ -1,3 +1,5 @@
+
+//normal package
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/data'
@@ -212,89 +214,6 @@ import 'package:'
 
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/movie_detail_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/movie_list_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/top_rated_movies_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/popular_tvseries_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/top_rated_tvseries_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/tvseries_detail_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/tvseries_list_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/tvseries_search_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/watchlist_tvseries_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/movie_search_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/popular_movies_notifier.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/watchlist_movie_notifier.dart';
-
 
 import 'package:'
     'http/http.dart' as http;
@@ -304,6 +223,130 @@ import 'package:'
     'get_it'
     '/get_it.dart';
 
+//bloc package movies
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/movie_detail'
+    '/movie_detail_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/now_playing_movies'
+    '/movie_now_playing_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/popular_movies'
+    '/movie_popular_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/movie_recommendations'
+    '/movie_recommendation_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/search_movies'
+    '/movie_search_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/top_rated_movies'
+    '/movie_top_rated_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/movie_watchlist'
+    '/movie_watchlist_bloc.dart';
+
+
+
+//bloc package tvseries
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/tvseries_detail'
+    '/tvseries_detail_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/on_the_air_tvseries'
+    '/on_the_air_tvseries_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/popular_tvseries'
+    '/popular_tvseries_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/tvseries_recommendations'
+    '/tvseries_recommendations_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/search_tvseries'
+    '/tvseries_search_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/top_rated_tvseries'
+    '/top_rated_tvseries_bloc.dart';
+
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/tvseries_watchlist'
+    '/watchlist_tvseries_bloc.dart';
+
+
+
 
 final
 locator
@@ -311,305 +354,522 @@ locator
     .instance;
 
 
-void init() {
-  // provider
+//void init() {
+  //provider
+  //locator
+  //.registerFactory(
+  //() => MovieListNotifier(
+  // getNowPlayingMovies:
+  //locator(),
+  //getPopularMovies:
+      //locator(),
+  //getTopRatedMovies:
+  //locator(),
+      //),
+  //);
+  //locator
+      //.registerFactory(
+      //() => TvSeriesListNotifier(
+      //getNowPlayingTvSeries:
+      //locator(),
+  //getPopularTvSeries:
+      //locator(),
+  //getTopRatedTvSeries:
+  //locator(),
+  //),
+      //);
+  //locator
+      //.registerFactory(
+      //() => MovieDetailNotifier(
+  //getMovieDetail:
+      //locator(),
+  //getMovieRecommendations:
+      //locator(),
+  //getWatchListStatus:
+      //locator(),
+  //saveWatchlist:
+      //locator(),
+  //removeWatchlist:
+  //locator(),
+  //),
+  //);
+  //locator
+  //.registerFactory(
+  //() => TvSeriesDetailNotifier(
+  //getTvSeriesDetail:
+  //locator(),
+  //getTvSeriesRecommendations:
+      //locator(),
+  //getWatchListTvSeriesStatus:
+      //locator(),
+      //saveWatchlistTvSeries:
+      //locator(),
+  //removeWatchlistTvSeries:
+  //locator(),
+  //),
+  //);
+  //locator
+  //.registerFactory(
+  //() => MovieSearchNotifier(
+  //searchMovies:
+  //locator(),
+            //),
+      //);
+  //locator
+  //.registerFactory(
+    //() => TvSeriesSearchNotifier(
+          //searchTvSeries:
+      //locator(),
+            //),
+      //);
+  //locator
+  //.registerFactory(
+  // ()
+      //=> PopularMoviesNotifier(
+      //locator(),
+        // ),
+      //);
+  //locator
+  //.registerFactory(
+  //()
+      // => PopularTvSeriesNotifier(
+      //locator(),
+        //),
+      //);
+  //locator
+  //.registerFactory(
+  //()
+      //=> TopRatedMoviesNotifier(
+      //getTopRatedMovies:
+      //locator(),
+        //),
+      //);
+  // locator
+  //.registerFactory(
+  //()
+      //=> TopRatedTvSeriesNotifier(
+      //getTopRatedTvSeries:
+      //locator(),
+        //),
+      //);
+  //locator
+      //.registerFactory(
+  //()
+      //=> WatchlistMovieNotifier(
+      //getWatchlistMovies:
+  //locator(),
+  //),
+  //);
+  //locator
+      //.registerFactory(
+      //() => WatchlistTvSeriesNotifier(
+  //getWatchlistTvSeries:
+  //locator(),
+      //),
+      // );
+
+//migrate from provider into bloc
+void init(
+    )
+async {
   locator
-      .registerFactory(
-        () => MovieListNotifier(
-      getNowPlayingMovies:
-      locator(),
-      getPopularMovies:
-      locator(),
-      getTopRatedMovies:
-      locator(),
-    ),
+      .registerFactory(()
+  => MovieDetailBloc(
+    getMovieDetail:
+    locator(),
+  )
   );
-  locator
-      .registerFactory(
-        () => TvSeriesListNotifier(
-      getNowPlayingTvSeries:
-      locator(),
-      getPopularTvSeries:
-      locator(),
-      getTopRatedTvSeries:
-      locator(),
-    ),
-  );
-  locator
-      .registerFactory(
-        () => MovieDetailNotifier(
-      getMovieDetail:
-      locator(),
-      getMovieRecommendations:
-      locator(),
-      getWatchListStatus:
-      locator(),
-      saveWatchlist:
-      locator(),
-      removeWatchlist:
-      locator(),
-    ),
-  );
-  locator
-      .registerFactory(
-        () => TvSeriesDetailNotifier(
-      getTvSeriesDetail:
-      locator(),
-      getTvSeriesRecommendations:
-      locator(),
-      getWatchListTvSeriesStatus:
-      locator(),
-      saveWatchlistTvSeries:
-      locator(),
-      removeWatchlistTvSeries:
-      locator(),
-    ),
-  );
-  locator
-      .registerFactory(
-        () => MovieSearchNotifier(
-      searchMovies:
-      locator(),
-    ),
-  );
-  locator
-      .registerFactory(
-        () => TvSeriesSearchNotifier(
-      searchTvSeries:
-      locator(),
-    ),
-  );
+
+
   locator
       .registerFactory(
         ()
-    => PopularMoviesNotifier(
-      locator(),
+    => MovieNowPlayingBloc(
+        locator()
     ),
   );
+
+
   locator
       .registerFactory(
         ()
-    => PopularTvSeriesNotifier(
-      locator(),
+    => MoviePopularBloc(
+        locator()
     ),
   );
+
+
+  locator
+      .registerFactory(()
+  => MovieRecommendationBloc(
+    getMovieRecommendations:
+    locator(
+
+    ),
+  )
+  );
+
+
+  locator
+      .registerFactory(()
+  => MovieSearchBloc(
+    searchMovies:
+    locator(
+
+    ),
+  )
+  );
+
+
   locator
       .registerFactory(
         ()
-    => TopRatedMoviesNotifier(
-      getTopRatedMovies:
-      locator(),
+    => MovieTopRatedBloc(
+        locator()
     ),
   );
+
+
+  locator
+      .registerFactory(()
+  => MovieWatchlistBloc(
+    getWatchlistMovies:
+    locator(
+    ),
+    getWatchListStatus:
+    locator(
+    ),
+    saveWatchlist:
+    locator(
+    ),
+    removeWatchlist:
+    locator(
+    ),
+  )
+  );
+
+
+
+  locator
+      .registerFactory(()
+  => TvseriesDetailBloc(
+     locator(
+     ),
+  )
+  );
+
+
+
   locator
       .registerFactory(
         ()
-    => TopRatedTvSeriesNotifier(
-      getTopRatedTvSeries:
-      locator(),
+    => OnTheAirTvseriesBloc(
+        locator()
     ),
   );
+
+
   locator
       .registerFactory(
         ()
-    => WatchlistMovieNotifier(
-      getWatchlistMovies:
-      locator(),
+    => PopularTvseriesBloc(
+        locator()
     ),
   );
+
+
   locator
       .registerFactory(
-        () => WatchlistTvSeriesNotifier(
-      getWatchlistTvSeries:
-      locator(),
+          ()
+  => TvseriesRecommendationsBloc(
+    locator(
+    ),
+  )
+  );
+
+
+
+  locator
+      .registerFactory(()
+  => TvseriesSearchBloc(
+    locator(),
+  ));
+  locator.registerFactory(
+        ()
+    => TopRatedTvseriesBloc(
+        locator()
     ),
   );
+
+
+  locator
+      .registerFactory(()
+  => WatchlistTvseriesBloc(
+    locator(
+    ),
+    locator(
+    ),
+    locator(
+    ),
+    locator(
+    ),
+  )
+  );
+
+
 
   // use case
   locator
       .registerLazySingleton(()
-  => GetNowPlayingMovies(locator())
+  => GetNowPlayingMovies(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetPopularMovies(locator())
+  => GetPopularMovies(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetTopRatedMovies(locator())
+  => GetTopRatedMovies(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetMovieDetail(locator())
+  => GetMovieDetail(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetMovieRecommendations(locator())
+  => GetMovieRecommendations(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => SearchMovies(locator())
+  => SearchMovies(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetWatchListStatus(locator())
+  => GetWatchListStatus(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => SaveWatchlist(locator())
+  => SaveWatchlist(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(() =>
-      RemoveWatchlist(locator())
+      RemoveWatchlist(
+          locator()
+      )
   );
 
 
   locator
       .registerLazySingleton(() =>
-      GetWatchlistMovies(locator())
+      GetWatchlistMovies(
+          locator()
+      )
   );
 
 
 
   locator
       .registerLazySingleton(()
-  => GetNowPlayingTvSeries(locator())
+  => GetNowPlayingTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetPopularTvSeries(locator())
+  => GetPopularTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetTopRatedTvSeries(locator())
+  => GetTopRatedTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetTvSeriesDetail(locator())
+  => GetTvSeriesDetail(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetTvSeriesRecommendations(locator())
+  => GetTvSeriesRecommendations(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => SearchTvSeries(locator())
+  => SearchTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetWatchListStatusTvSeries(locator())
+  => GetWatchListStatusTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => SaveWatchlistTvSeries(locator())
+  => SaveWatchlistTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => RemoveWatchlistTvSeries(locator())
+  => RemoveWatchlistTvSeries(
+      locator()
+  )
   );
 
 
   locator
       .registerLazySingleton(()
-  => GetWatchlistTvSeries(locator())
+  => GetWatchlistTvSeries(
+      locator()
+  )
   );
 
 
 
   // repository
   locator
-      .registerLazySingleton<MovieRepository>(
+      .registerLazySingleton<
+      MovieRepository>(
         () => MovieRepositoryImpl(
       remoteDataSource:
-      locator(),
+      locator(
+      ),
       localDataSource:
-      locator(),
+      locator(
+      ),
     ),
   );
 
   locator
-      .registerLazySingleton<TvSeriesRepository>(
+      .registerLazySingleton<
+      TvSeriesRepository>(
         () => TvSeriesRepositoryImpl(
       remoteDataSource:
-      locator(),
+      locator(
+      ),
       localDataSource:
-      locator(),
+      locator(
+      ),
     ),
   );
 
   // data sources
   locator
-      .registerLazySingleton<MovieRemoteDataSource>(
+      .registerLazySingleton<
+      MovieRemoteDataSource>(
           () => MovieRemoteDataSourceImpl(
               client:
-              locator()));
+              locator(
+
+              )
+          )
+  );
+
 
 
   locator
-      .registerLazySingleton<MovieLocalDataSource>(
+      .registerLazySingleton<
+      MovieLocalDataSource>(
           () => MovieLocalDataSourceImpl(
               databaseHelper:
-              locator()));
+              locator()
+          )
+  );
+
+
 
 
 
   locator
-      .registerLazySingleton<TvSeriesRemoteDataSource>(
+      .registerLazySingleton<
+      TvSeriesRemoteDataSource>(
           () => TvSeriesRemoteDataSourceImpl(
               client:
-              locator()));
+              locator()
+          )
+  );
+
+
 
 
   locator.
-  registerLazySingleton<TvSeriesLocalDataSource>(
+  registerLazySingleton<
+      TvSeriesLocalDataSource>(
           () => TvSeriesLocalDataSourceImpl(
               databaseHelper:
-              locator()));
+              locator()
+          )
+  );
 
 
 
   // helper
   locator.
   registerLazySingleton<DatabaseHelper>(()
-  => DatabaseHelper()
+  => DatabaseHelper(
+  )
   );
 
 
   locator.
   registerLazySingleton<DatabaseHelperTvSeries>(()
-  => DatabaseHelperTvSeries()
+  => DatabaseHelperTvSeries(
+  )
   );
 
 

@@ -34,7 +34,7 @@ class AboutPage
                   color: kPrussianBlue,
                   child: Center(
                     child: Image.asset(
-                      'assets/circle-g.png',
+                      'assets/movie-and-tvseries.png',
                       width: 128,
                     ),
                   ),
@@ -46,7 +46,7 @@ class AboutPage
                       .all(
                       32.0
                   ),
-                  color: kMikadoYellow,
+                  color: kGreenColor,
                   child: const Text(
                     'Ditonton merupakan sebuah aplikasi katalog film yang dikembangkan oleh Dicoding Indonesia sebagai contoh proyek aplikasi untuk kelas Menjadi Flutter Developer Expert.',
                     style: TextStyle(

@@ -3,11 +3,6 @@ import 'package:'
     '/dartz.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
@@ -34,11 +29,16 @@ class SaveWatchlistTvSeries {
           .repository
       );
 
-  Future<Either<Failure,
-      String>>
+  Future<
+      Either<
+          dynamic,
+          String>>
   execute(
-      TvSeriesDetail tvseries) {
-    return repository
+      TvSeriesDetail
+      tvseries
+      ) {
+    return
+      repository
         .saveWatchlistTvSeries(
         tvseries
     );

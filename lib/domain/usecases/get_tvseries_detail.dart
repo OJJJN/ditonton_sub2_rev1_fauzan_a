@@ -10,10 +10,6 @@ import 'package:'
     '/tvseries_detail.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
 
 
 import 'package:'
@@ -33,9 +29,16 @@ class GetTvSeriesDetail {
       this.repository
       );
 
-  Future<Either<Failure,
-      TvSeriesDetail>> execute(int id) {
-    return repository
+  Future<
+      Either<
+          dynamic,
+          TvSeriesDetail>>
+  execute(
+      int id
+      ) {
+
+    return
+      repository
         .getTvSeriesDetail(
         id
     );

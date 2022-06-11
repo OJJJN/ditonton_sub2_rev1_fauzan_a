@@ -1,20 +1,9 @@
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/state_enum.dart';
-
+//normal package
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/utils.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/watchlist_tvseries_notifier.dart';
+    '/common/'
+    'commutils.dart';
 
 
 import 'package:'
@@ -30,119 +19,206 @@ import 'package:'
 
 
 import 'package:'
-    'provider'
-    '/provider.dart';
+    'flutter_bloc'
+    '/flutter_bloc.dart';
 
 
 
-class WatchlistTvSeriesPage
-    extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-tvseries';
 
-  const WatchlistTvSeriesPage({Key? key}) : super(key: key);
+//bloc package
+import '../'
+    '..'
+    '/bloc'
+    '/tvseries'
+    '/tvseries_watchlist'
+    '/watchlist_tvseries_bloc.dart';
+
+
+
+class
+WatchlistTvSeriesPage
+    extends
+    StatefulWidget {
+
+  static
+  const
+  ROUTE_NAME
+  = '/watchlist-tvseries';
+
+
 
   @override
-  _WatchlistTvSeriesPageState createState()
-  => _WatchlistTvSeriesPageState();
+  _WatchlistTvSeriesPageState
+  createState()
+  => _WatchlistTvSeriesPageState(
+  );
+
 }
 
-class _WatchlistTvSeriesPageState
-    extends State<WatchlistTvSeriesPage>
-    with RouteAware {
+
+
+class
+_WatchlistTvSeriesPageState
+    extends
+    State<
+        WatchlistTvSeriesPage>
+
+    with
+        RouteAware {
   @override
-  void initState() {
+  void initState(
+      ) {
+
     super
-        .initState();
+        .initState(
+    );
+
+
     Future
-        .microtask(() =>
-        Provider
-            .of<WatchlistTvSeriesNotifier>(
-            context,
-            listen: false)
-            .fetchWatchlistTvSeries());
+        .microtask(
+            (
+            ) {
+
+      context
+          .read<
+          WatchlistTvseriesBloc>()
+          .add(
+          WatchlistTvseriesGetEvent()
+      );
+    });
   }
 
+
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies(
+      ) {
+
     super
-        .didChangeDependencies();
-    routeObserver.subscribe(
+        .didChangeDependencies(
+    );
+
+
+    routeObserver
+        .subscribe(
         this,
         ModalRoute
             .of(
-            context)!);
+            context)
+        !
+    );
+
   }
 
-  @override
-  void didPopNext() {
-    Provider.of<WatchlistTvSeriesNotifier>(
-        context,
-        listen: false)
-        .fetchWatchlistTvSeries();
+  void didPopNext(
+      ) {
+
+    context
+        .read<
+        WatchlistTvseriesBloc>()
+        .add(
+        WatchlistTvseriesGetEvent()
+    );
+
   }
 
   @override
   Widget build(
-      BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(
-          8.0),
-      child: Consumer<
-          WatchlistTvSeriesNotifier>(
-        builder: (
-            context,
-            data,
-            child) {
-          if (data
-              .watchlistTvState ==
-              RequestState
-                  .Loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (data
-              .watchlistTvState ==
-              RequestState
-                  .Loaded) {
-            return ListView.builder(
-              itemBuilder: (
-                  context,
-                  index) {
-                final
-                tvseries
-                = data
-                    .watchlistTvSeries[
-                      index
-                ];
-                return TvSeriesCard(
-                    tvseries
-                );
-              },
-              itemCount: data
-                  .watchlistTvSeries
-                  .length,
-            );
-          } else {
-            return Center(
-              key: const Key(
-                  'error_message'
-              ),
-              child: Text(
-                  data
-                      .message
-              ),
-            );
-          }
-        },
+      BuildContext
+      context
+      ) {
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+            'Watchlist TvSeries'
+        ),
+      ),
+
+      body: Padding(
+        padding: const
+        EdgeInsets
+            .all(
+            8.0
+        ),
+
+
+        child: BlocBuilder<
+            WatchlistTvseriesBloc,
+            WatchlistTvseriesState
+        >(
+          builder: (
+              context,
+              state
+              ) {
+
+            if (
+            state
+            is WatchlistTvseriesLoading
+            ) {
+
+              return const Center(
+                child: CircularProgressIndicator(
+                ),
+              );
+
+
+            } else if (
+            state
+            is WatchlistTvseriesLoaded
+            ) {
+
+              return ListView
+                  .builder(
+
+                itemBuilder: (
+                    context,
+                    index
+                    ) {
+
+                  final
+                  tvseries
+                  = state
+                      .result[
+                        index
+                  ];
+
+
+                  return TvSeriesCard(
+                      tvseries
+                  );
+
+                },
+                itemCount: state
+                    .result
+                    .length,
+              );
+
+
+            } else {
+              return Center(
+                key: Key(
+                    'error_message'
+                ),
+                child: Text(
+                    "Error"
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
 
   @override
-  void dispose() {
+  void dispose(
+      ) {
+
     routeObserver
         .unsubscribe(
-        this);
+        this
+    );
+
     super
         .dispose(
     );

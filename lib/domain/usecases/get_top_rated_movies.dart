@@ -3,10 +3,6 @@ import 'package:'
     '/dartz.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
 
 
 import 'package:'
@@ -37,9 +33,9 @@ class GetTopRatedMovies {
 
   Future<
       Either<
-          Failure,
-          List<Movie
-          >>> execute(
+          dynamic,
+          List<Movie>>>
+  execute(
       ) {
     return
       repository

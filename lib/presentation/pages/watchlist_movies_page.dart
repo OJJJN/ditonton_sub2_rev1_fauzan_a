@@ -1,20 +1,13 @@
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/state_enum.dart';
 
+//normal package
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/utils.dart';
+    '/common/'
+    'commutils.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/watchlist_movie_notifier.dart';
+
 
 
 import 'package:'
@@ -29,33 +22,49 @@ import 'package:'
     '/material.dart';
 
 
+
 import 'package:'
-    'provider'
-    '/provider.dart';
+    'flutter_bloc'
+    '/flutter_bloc.dart';
+
+//bloc package
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/movie_watchlist'
+    '/movie_watchlist_bloc.dart';
 
 
 
-class WatchlistMoviesPage
+
+
+class
+WatchlistMoviesPage
     extends
     StatefulWidget {
+  static
+  const
+  ROUTE_NAME
+  = '/watchlist-movie';
 
-  static const ROUTE_NAME
-  = '/watchlist-movie'
-  ;
 
-  const WatchlistMoviesPage({Key? key}) : super(key: key);
 
   @override
-  _WatchlistMoviesPageState createState(
-      ) => _WatchlistMoviesPageState(
+  _WatchlistMoviesPageState
+  createState()
+  => _WatchlistMoviesPageState(
   );
 }
 
-class _WatchlistMoviesPageState
+class
+_WatchlistMoviesPageState
     extends
-    State<WatchlistMoviesPage>
-    with RouteAware {
-
+    State<
+        WatchlistMoviesPage
+    >
+    with
+        RouteAware {
 
   @override
   void initState(
@@ -63,107 +72,136 @@ class _WatchlistMoviesPageState
     super
         .initState(
     );
+
     Future
         .microtask((
-        ) =>
-        Provider
-            .of<WatchlistMovieNotifier>(
-            context,
-            listen: false)
-            .fetchWatchlistMovies(
-        ));
+        ) {
+      context
+          .read<
+          MovieWatchlistBloc>()
+          .add(
+          GetListEvent(
+          )
+      );
+    });
   }
 
+
   @override
-  void didChangeDependencies(
+  void
+  didChangeDependencies(
       ) {
     super
         .didChangeDependencies(
     );
+
+
     routeObserver
         .subscribe(
         this,
         ModalRoute
             .of(
-            context)!
+            context
+        )!
     );
   }
 
-  @override
+
   void didPopNext(
       ) {
-    Provider
-        .of<WatchlistMovieNotifier>(
-        context,
-        listen: false)
-        .fetchWatchlistMovies(
-    );
+    context
+        .read<
+        MovieWatchlistBloc>()
+        .add
+      (GetListEvent(
+    ));
+
   }
+
 
   @override
   Widget build(
-      BuildContext context
+      BuildContext
+      context
       ) {
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-            'Watchlist'
+        title: Text(
+            'Watchlist Movie'
         ),
       ),
+
       body: Padding(
-        padding: const EdgeInsets
+        padding: const
+        EdgeInsets
             .all(
             8.0
         ),
-        child: Consumer<WatchlistMovieNotifier>(
+
+        child:
+        BlocBuilder<
+            MovieWatchlistBloc,
+            MovieWatchlistState>
+          (
           builder: (
               context,
-              data,
-              child) {
+              state
+              ) {
+
             if (
-            data
-                .watchlistState
-                == RequestState
-                .Loading
+            state
+            is
+            MovieWatchlistLoading
             ) {
-              return const Center(
+
+              return
+                const Center(
                 child: CircularProgressIndicator(
                 ),
               );
+
+
             } else if (
-            data
-                .watchlistState
-                == RequestState
-                .Loaded
+            state
+            is
+            MovieWatchlistLoaded
             ) {
-              return ListView
-                  .builder(
+
+              return
+                ListView
+                    .builder(
                 itemBuilder: (
                     context,
                     index
                     ) {
+
                   final
                   movie
-                  = data
-                      .watchlistMovies[
+                  = state
+                      .result[
                         index
                   ];
-                  return MovieCard(
-                      movie
-                  );
+
+
+                  return
+                    MovieCard(
+                        movie
+                    );
                 },
-                itemCount: data
-                    .watchlistMovies
+                itemCount:
+                state
+                    .result
                     .length,
               );
+
             } else {
               return Center(
-                key: const Key(
+                key: Key(
                     'error_message'
                 ),
                 child: Text(
-                    data
-                        .message
+                    "Error"
                 ),
               );
             }
@@ -180,6 +218,8 @@ class _WatchlistMoviesPageState
         .unsubscribe(
         this
     );
+
+
     super
         .dispose(
     );

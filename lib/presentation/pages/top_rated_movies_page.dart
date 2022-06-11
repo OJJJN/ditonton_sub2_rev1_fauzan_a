@@ -1,14 +1,4 @@
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/state_enum.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/top_rated_movies_notifier.dart';
+//normal package
 
 
 import 'package:'
@@ -24,112 +14,156 @@ import 'package:'
 
 
 import 'package:'
-    'provider'
-    '/provider.dart';
+    'flutter_bloc'
+    '/flutter_bloc.dart';
+
+//bloc package
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/top_rated_movies'
+    '/movie_top_rated_bloc.dart';
 
 
 
-class TopRatedMoviesPage
+
+
+class
+TopRatedMoviesPage
     extends
     StatefulWidget {
-  static const ROUTE_NAME =
-      '/top-rated-movie'
-  ;
+  static
+  const
+  ROUTE_NAME
+  = '/top-rated-movie';
 
-  const TopRatedMoviesPage({Key? key}) : super(key: key);
+
 
   @override
-  _TopRatedMoviesPageState createState(
-      ) => _TopRatedMoviesPageState(
-  );
+  _TopRatedMoviesPageState
+  createState()
+  =>
+      _TopRatedMoviesPageState(
+      );
 }
 
-class _TopRatedMoviesPageState
-    extends
-    State<TopRatedMoviesPage> {
 
+
+class
+_TopRatedMoviesPageState
+    extends
+    State<
+        TopRatedMoviesPage
+    > {
 
   @override
   void initState(
       ) {
-    super.initState(
+    super
+        .initState(
     );
-    Future.microtask((
-        ) =>
-        Provider
-            .of<TopRatedMoviesNotifier>(
-            context,
-            listen: false
-        )
-            .fetchTopRatedMovies(
-        ));
+
+
+    Future
+        .microtask(
+            (
+            ) {
+      context
+          .read<
+          MovieTopRatedBloc>()
+          .add(
+          MovieTopRatedGetEvent()
+      );
+    });
   }
+
 
   @override
   Widget build(
-      BuildContext context
+      BuildContext
+      context
       ) {
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
             'Top Rated Movies'
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets
+        padding: const
+        EdgeInsets
             .all(
             8.0
         ),
-        child: Consumer<
-            TopRatedMoviesNotifier>(
+
+        child:
+        BlocBuilder<
+            MovieTopRatedBloc,
+            MovieTopRatedState>
+          (
           builder: (
               context,
-              data,
-              child) {
-            if (
-            data
-                .state
-                == RequestState
-                .Loading) {
+              state
+              ) {
 
-              return const Center(
+            if (
+            state
+            is
+            MovieTopRatedLoading
+            ) {
+
+              return
+                const Center(
                 child: CircularProgressIndicator(
                 ),
               );
+
+
             } else if (
-            data
-                .state
-                == RequestState
-                .Loaded
+            state
+            is
+            MovieTopRatedLoaded
             ) {
-              return ListView
-                  .builder(
+
+
+              return
+                ListView
+                    .builder(
                 itemBuilder: (
                     context,
-                    index) {
+                    index
+                    ) {
 
                   final
                   movie
-                  = data
-                      .movies[
+                  = state
+                      .result[
                         index
                   ];
-                  return MovieCard(
-                      movie
-                  );
+
+
+                  return
+                    MovieCard(
+                        movie
+                    );
                 },
-                itemCount: data
-                    .movies
+
+                itemCount:
+                state
+                    .result
                     .length,
               );
+
+
             } else {
               return Center(
-                key: const Key(
+                key: Key(
                     'error_message'
                 ),
                 child: Text(
-                    data
-                        .message
+                    "Error"
                 ),
               );
             }

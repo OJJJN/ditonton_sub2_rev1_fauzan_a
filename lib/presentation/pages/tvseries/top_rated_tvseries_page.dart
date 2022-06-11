@@ -1,16 +1,4 @@
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/state_enum.dart';
-
-
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/presentation'
-    '/provider'
-    '/top_rated_tvseries_notifier.dart';
-
-
+//normal package
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
@@ -24,94 +12,165 @@ import 'package:'
 
 
 import 'package:'
-    'provider'
-    '/provider.dart';
+    'flutter_bloc'
+    '/flutter_bloc.dart';
 
 
 
-class TopRatedTvSeriesPage
+//bloc package
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/presentation'
+    '/bloc'
+    '/tvseries'
+    '/top_rated_tvseries'
+    '/top_rated_tvseries_bloc.dart';
+
+
+
+
+class
+TopRatedTvSeriesPage
     extends
     StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-TvSeries';
 
-  const TopRatedTvSeriesPage(
-      {Key? key}) : super(key: key);
+
+  static
+  const
+  ROUTE_NAME
+  = '/top-rated-tvseries';
 
   @override
-  _TopRatedMoviesPageState createState()
-  => _TopRatedMoviesPageState();
+  _TopRatedTvSeriesPageState
+  createState()
+  => _TopRatedTvSeriesPageState(
+  );
+
 }
 
-class _TopRatedMoviesPageState
+
+
+class
+_TopRatedTvSeriesPageState
     extends State<
-        TopRatedTvSeriesPage> {
+        TopRatedTvSeriesPage
+    > {
+
   @override
-  void initState() {
+  void initState(
+      ) {
+
     super
-        .initState();
-    Future.microtask(() =>
-        Provider
-            .of<TopRatedTvSeriesNotifier>(
-            context,
-            listen: false)
-            .fetchTopRatedTvSeries());
+        .initState(
+    );
+
+
+    Future
+        .microtask((
+        ) {
+
+      context
+          .read<
+          TopRatedTvseriesBloc>()
+          .add(
+          TopRatedTvseriesGetEvent()
+      );
+    });
   }
+
+
 
   @override
   Widget build(
-      BuildContext context) {
+      BuildContext
+      context
+      ) {
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-            'Top Rated Movies'),
+        title: Text(
+            'Top Rated Tv Series'
+        ),
       ),
+
       body: Padding(
-        padding: const EdgeInsets
+        padding: const
+        EdgeInsets
             .all(
-            8.0),
-        child: Consumer<
-            TopRatedTvSeriesNotifier>(
+            8.0
+        ),
+
+        child: BlocBuilder<
+            TopRatedTvseriesBloc,
+            TopRatedTvseriesState>(
+
+
           builder: (
               context,
-              data,
-              child) {
+              state
+              ) {
+
             if (
-            data.state
-                == RequestState
-                .Loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+            state
+            is
+            TopRatedTvseriesLoading
+            ) {
+
+
+              return
+                const
+                Center(
+
+                child:
+                CircularProgressIndicator(
+                ),
               );
+
+
             } else if (
-            data.state
-                == RequestState
-                .Loaded) {
-              return ListView
-                  .builder(
+            state
+            is TopRatedTvseriesLoaded
+            ) {
+
+              return
+                ListView
+                    .builder(
                 itemBuilder: (
                     context,
-                    index) {
+                    index
+                    ) {
+
                   final
-                  tvseries
-                  = data
-                      .tvseries[
+                  tvserie
+                  = state
+                      .result[
                         index
                   ];
-                  return TvSeriesCard(
-                      tvseries
-                  );
+
+
+                  return
+                    TvSeriesCard(
+                        tvserie
+                    );
+
                 },
-                itemCount: data
-                    .tvseries
+                itemCount:
+                state
+                    .result
                     .length,
               );
+
+
             } else {
-              return Center(
-                key: const Key(
-                    'error_message'),
+              return
+                Center(
+                key: Key(
+                    'error_message'
+                ),
+
                 child: Text(
-                    data
-                        .message),
+                    "Error"
+                ),
               );
             }
           },
@@ -120,3 +179,5 @@ class _TopRatedMoviesPageState
     );
   }
 }
+
+

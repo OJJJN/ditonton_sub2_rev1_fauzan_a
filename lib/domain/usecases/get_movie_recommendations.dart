@@ -17,10 +17,6 @@ import 'package:'
     '/movie_repository.dart';
 
 
-import 'package:'
-    'ditonton_sub2_rev1_fauzan_a'
-    '/common'
-    '/failure.dart';
 
 
 
@@ -36,9 +32,10 @@ class GetMovieRecommendations {
       );
 
   Future<
-      Either<Failure,
-          List<Movie
-          >>> execute(
+      Either<
+          dynamic,
+          List<Movie>>>
+  execute(
       id
       ) {
     return
