@@ -78,6 +78,14 @@ testWatchlistMovie
   overview: 'overview',
 );
 
+final
+testWatchlistMovieList
+= [
+  testWatchlistMovie
+];
+
+
+
 const
 testMovieTable
 = MovieTable(

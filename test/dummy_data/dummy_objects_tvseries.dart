@@ -79,6 +79,12 @@ testWatchlistTvSeries
 );
 
 
+final
+testWatchlistTvseriesList
+= [
+  testWatchlistTvSeries
+];
+
 const
 testTvSeriesTable
 = TvSeriesTable(
