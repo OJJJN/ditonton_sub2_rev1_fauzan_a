@@ -57,6 +57,10 @@ import 'package:'
 
 
 
+
+
+
+
 class MovieRepositoryImpl
     implements
         MovieRepository {
@@ -106,6 +110,12 @@ class MovieRepositoryImpl
             ConnectionFailure(
                 'Failed to connect to the network')
         );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -138,6 +148,12 @@ class MovieRepositoryImpl
         const Left(
             ConnectionFailure(
                 'Failed to connect to the network')
+        );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
         );
     }
   }
@@ -174,6 +190,12 @@ class MovieRepositoryImpl
           ConnectionFailure(
               'Failed to connect to the network')
       );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -209,6 +231,12 @@ class MovieRepositoryImpl
             ConnectionFailure(
                 'Failed to connect to the network')
         );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -243,6 +271,12 @@ class MovieRepositoryImpl
           ConnectionFailure(
               'Failed to connect to the network')
       );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -278,6 +312,12 @@ class MovieRepositoryImpl
         const Left(
             ConnectionFailure(
                 'Failed to connect to the network')
+        );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
         );
     }
   }

@@ -355,6 +355,11 @@ import 'package:'
     '/tvseries_watchlist'
     '/watchlist_tvseries_bloc.dart';
 
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/common'
+    '/http_ssl_pinning_helper.dart';
+
 //provider
 //void main() async{
 //di.init();
@@ -435,19 +440,40 @@ import 'package:'
   //),
   //],
 //migrate into bloc from provider
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  di.init();
+void main()
+async{
+  WidgetsFlutterBinding
+      .ensureInitialized(
+  );
+
+
+  await Firebase
+      .initializeApp(
+  );
+
+  await HttpSSLPiningHelper.init();
+
+
+  di
+      .init(
+  );
+
+
   runApp(
-      const MyApp());
+      const MyApp()
+  );
 }
 
 class MyApp
     extends
     StatelessWidget {
   const MyApp(
-      {Key? key}) : super(key: key);
+      {Key? key})
+      : super(
+      key: key
+  );
+
+
 
   @override
   Widget build(

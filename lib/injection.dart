@@ -215,8 +215,6 @@ import 'package:'
 
 
 
-import 'package:'
-    'http/http.dart' as http;
 
 
 import 'package:'
@@ -344,6 +342,11 @@ import 'package:'
     '/tvseries'
     '/tvseries_watchlist'
     '/watchlist_tvseries_bloc.dart';
+
+import 'package:'
+    'ditonton_sub2_rev1_fauzan_a'
+    '/common'
+    '/http_ssl_pinning_helper.dart';
 
 
 
@@ -877,7 +880,7 @@ async {
   // external
   locator.
   registerLazySingleton(()
-  => http.Client()
+  => HttpSSLPiningHelper.client
   );
 
 }

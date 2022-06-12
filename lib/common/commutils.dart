@@ -92,6 +92,16 @@ class DatabaseFailure
   );
 }
 
+class SslFailure
+    extends
+    Failure {
+  SslFailure(
+      String message)
+      : super
+      (message
+    );
+}
+
 
 //this is call package format genre
 String showFormatGenres(

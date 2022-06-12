@@ -57,6 +57,7 @@ import 'package:'
 
 
 
+
 class TvSeriesRepositoryImpl
     implements
         TvSeriesRepository {
@@ -105,6 +106,12 @@ class TvSeriesRepositoryImpl
             ConnectionFailure(
                 'Failed to connect to the network')
         );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -140,6 +147,12 @@ class TvSeriesRepositoryImpl
             ConnectionFailure(
                 'Failed to connect to the network')
         );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -171,6 +184,12 @@ class TvSeriesRepositoryImpl
             ConnectionFailure(
                 'Failed to connect to the network')
         );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -200,6 +219,12 @@ class TvSeriesRepositoryImpl
         Left(
             ConnectionFailure(
                 'Failed to connect to the network')
+        );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
         );
     }
   }
@@ -231,6 +256,12 @@ class TvSeriesRepositoryImpl
             ConnectionFailure(
                 'Failed to connect to the network')
         );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
+        );
     }
   }
 
@@ -261,6 +292,12 @@ class TvSeriesRepositoryImpl
         Left(
             ConnectionFailure(
                 'Failed to connect to the network')
+        );
+    } on TlsException {
+      return
+        Left(
+            SslFailure(
+                'Certificate unvalid')
         );
     }
   }
