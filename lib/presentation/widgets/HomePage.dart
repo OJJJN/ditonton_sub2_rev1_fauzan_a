@@ -47,6 +47,11 @@ import 'package:'
     '/material.dart';
 
 
+//import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
+
+
+
 
 class
 HomePage
@@ -135,6 +140,7 @@ _HomeMoviePageState
         actions: [
           IconButton(
             onPressed: () {
+              //FirebaseCrashlytics.instance.crash();
               Navigator
                   .pushNamed(
                   context,
