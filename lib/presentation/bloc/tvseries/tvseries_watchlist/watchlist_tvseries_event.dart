@@ -1,123 +1,37 @@
 part of 'watchlist_tvseries_bloc.dart';
 
-
-abstract
-class
-WatchlistTvseriesEvent
-    extends
-    Equatable {
-
-  const
-  WatchlistTvseriesEvent(
-      );
-
-
+abstract class WatchlistTvseriesEvent extends Equatable {
+  const WatchlistTvseriesEvent();
 
   @override
-  List<
-      Object>
-  get props
-  => [
-  ];
+  List<Object> get props => [];
 }
 
+class WatchlistTvseriesGetEvent extends WatchlistTvseriesEvent {}
 
+class WatchlistTvseriesGetStatusEvent extends WatchlistTvseriesEvent {
+  final int id;
 
-class
-WatchlistTvseriesGetEvent
-    extends
-    WatchlistTvseriesEvent {
-}
-
-
-
-class
-WatchlistTvseriesGetStatusEvent
-    extends
-    WatchlistTvseriesEvent {
-
-
-  final
-  int
-  id;
-
-
-
-  const
-  WatchlistTvseriesGetStatusEvent(
-      this
-          .id
-      );
-
-
+  const WatchlistTvseriesGetStatusEvent(this.id);
 
   @override
-  List<
-      Object>
-  get props
-  => [
-    id
-  ];
-
+  List<Object> get props => [id];
 }
 
+class WatchlistTvseriesTambahItemEvent extends WatchlistTvseriesEvent {
+  final TvSeriesDetail tvSeriesDetail;
 
-
-class
-WatchlistTvseriesTambahItemEvent
-    extends
-    WatchlistTvseriesEvent {
-
-  final
-  TvSeriesDetail
-  tvSeriesDetail;
-
-
-
-  const
-  WatchlistTvseriesTambahItemEvent(
-      this
-          .tvSeriesDetail
-      );
-
-
+  const WatchlistTvseriesTambahItemEvent(this.tvSeriesDetail);
 
   @override
-  List<
-      Object>
-  get props
-  => [
-    tvSeriesDetail
-  ];
-
+  List<Object> get props => [tvSeriesDetail];
 }
 
+class WatchlistTvseriesHapusItemEvent extends WatchlistTvseriesEvent {
+  final TvSeriesDetail tvSeriesDetail;
 
-
-class
-WatchlistTvseriesHapusItemEvent
-    extends
-    WatchlistTvseriesEvent {
-
-  final
-  TvSeriesDetail
-  tvSeriesDetail;
-
-
-
-  const
-  WatchlistTvseriesHapusItemEvent(
-      this
-          .tvSeriesDetail
-      );
-
-
+  const WatchlistTvseriesHapusItemEvent(this.tvSeriesDetail);
 
   @override
-  List<
-      Object>
-  get props
-  => [
-    tvSeriesDetail
-  ];
+  List<Object> get props => [tvSeriesDetail];
 }

@@ -2,103 +2,62 @@ import 'package:'
     'equatable'
     '/equatable.dart';
 
-class TvSeries
-    extends
-    Equatable {
+class TvSeries extends Equatable {
   TvSeries({
-    required this
-        .backdropPath,
-    required this
-        .genreIds,
-    required this
-        .id,
-    required this
-        .originalName,
-    required this
-        .overview,
-    required this
-        .popularity,
-    required this
-        .posterPath,
-    required this
-        .firstAirDate,
-    required this
-        .name,
-    required this
-        .voteAverage,
-    required this
-        .voteCount,
+    required this.backdropPath,
+    required this.genreIds,
+    required this.id,
+    required this.originalName,
+    required this.overview,
+    required this.popularity,
+    required this.posterPath,
+    required this.firstAirDate,
+    required this.name,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
-  TvSeries
-      .watchlist({
-    required this
-        .id,
-    required this
-        .overview,
-    required this
-        .posterPath,
-    required this
-        .name,
+  TvSeries.watchlist({
+    required this.id,
+    required this.overview,
+    required this.posterPath,
+    required this.name,
   });
 
-  String?
-  backdropPath;
+  String? backdropPath;
 
+  List<int>? genreIds;
 
-  List<int>?
-  genreIds;
+  int id;
 
+  String? originalName;
 
-  int
-  id;
+  String? overview;
 
+  double? popularity;
 
-  String?
-  originalName;
+  String? posterPath;
 
+  String? firstAirDate;
 
-  String?
-  overview;
+  String? name;
 
+  double? voteAverage;
 
-  double?
-  popularity;
-
-
-  String?
-  posterPath;
-
-
-  String?
-  firstAirDate;
-
-
-  String?
-  name;
-
-
-  double?
-  voteAverage;
-
-
-  int?
-  voteCount;
+  int? voteCount;
 
   @override
-  List<
-      Object?>
-  get props => [
-    backdropPath,
-    genreIds,
-    id,
-    originalName,
-    overview,
-    popularity,
-    posterPath,
-    firstAirDate,
-    name,
-    voteAverage,
-    voteCount,
-  ];
+  List<Object?> get props => [
+        backdropPath,
+        genreIds,
+        id,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        firstAirDate,
+        name,
+        voteAverage,
+        voteCount,
+      ];
 }

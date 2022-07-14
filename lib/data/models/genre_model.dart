@@ -4,70 +4,34 @@ import 'package:'
     '/entities'
     '/genre.dart';
 
-
 import 'package:'
     'equatable'
     '/equatable.dart';
 
-
-
-class GenreModel
-    extends
-    Equatable {
+class GenreModel extends Equatable {
   const GenreModel({
-    required
-    this
-        .id,
-
-    required
-    this
-        .name,
+    required this.id,
+    required this.name,
   });
 
-  final
-  int
-  id;
+  final int id;
 
-  final
-  String
-  name;
+  final String name;
 
-  factory GenreModel
-      .fromJson(Map<String,
-      dynamic>json
-      ) =>
-      GenreModel(
-    id:
-    json[
-      "id"],
-    name:
-    json[
-      "name"],
-  );
+  factory GenreModel.fromJson(Map<String, dynamic> json) => GenreModel(
+        id: json["id"],
+        name: json["name"],
+      );
 
-  Map<String,
-      dynamic> toJson(
-      ) => {
-    "id"
-        : id,
-    "name"
-        : name,
-  };
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+      };
 
   Genre toEntity() {
-    return Genre(
-        id:
-        id,
-
-        name:
-        name
-    );
+    return Genre(id: id, name: name);
   }
 
   @override
-  List<
-      Object
-      ?> get props => [
-        id, name
-  ];
+  List<Object?> get props => [id, name];
 }

@@ -1,100 +1,30 @@
 part of 'popular_tvseries_bloc.dart';
 
-
-abstract
-class
-PopularTvseriesState
-    extends
-    Equatable {
-  const
-  PopularTvseriesState(
-      );
-
-
+abstract class PopularTvseriesState extends Equatable {
+  const PopularTvseriesState();
 
   @override
-  List<
-      Object>
-  get props
-  => [
-  ];
+  List<Object> get props => [];
 }
 
+class PopularTvseriesEmpty extends PopularTvseriesState {}
 
+class PopularTvseriesLoading extends PopularTvseriesState {}
 
-class
-PopularTvseriesEmpty
-    extends
-    PopularTvseriesState {
-}
+class PopularTvseriesError extends PopularTvseriesState {
+  final String message;
 
-
-
-class
-PopularTvseriesLoading
-    extends
-    PopularTvseriesState {
-}
-
-
-
-class
-PopularTvseriesError
-    extends
-    PopularTvseriesState {
-
-
-  final
-  String
-  message;
-
-
-
-  const
-  PopularTvseriesError(
-      this
-          .message
-      );
-
-
+  const PopularTvseriesError(this.message);
 
   @override
-  List<
-      Object>
-  get props
-  => [
-    message
-  ];
+  List<Object> get props => [message];
 }
 
+class PopularTvseriesLoaded extends PopularTvseriesState {
+  final List<TvSeries> result;
 
-
-class
-PopularTvseriesLoaded
-    extends
-    PopularTvseriesState {
-
-
-  final
-  List<
-      TvSeries>
-  result;
-
-
-
-  const
-  PopularTvseriesLoaded(
-      this
-          .result
-      );
-
-
+  const PopularTvseriesLoaded(this.result);
 
   @override
-  List<
-      Object>
-  get props
-  => [
-    result
-  ];
+  List<Object> get props => [result];
 }

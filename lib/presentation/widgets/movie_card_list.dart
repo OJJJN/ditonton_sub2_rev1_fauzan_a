@@ -2,12 +2,10 @@ import 'package:'
     'cached_network_image'
     '/cached_network_image.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/common'
     '/constants.dart';
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
@@ -15,130 +13,77 @@ import 'package:'
     '/entities'
     '/movie.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
     '/pages'
     '/movie_detail_page.dart';
 
-
 import 'package:'
     'flutter'
     '/material.dart';
 
+class MovieCard extends StatelessWidget {
+  final Movie movie;
 
-
-class MovieCard
-    extends
-    StatelessWidget {
-  final
-  Movie
-  movie
-  ;
-
-
-
-  const MovieCard(
-      this
-          .movie
-      );
-
+  const MovieCard(this.movie);
 
   @override
-  Widget build(
-      BuildContext context
-      ) {
+  Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets
-          .symmetric(
-          vertical:
-          4
-      ),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
-          Navigator
-              .pushNamed(
+          Navigator.pushNamed(
             context,
-            MovieDetailPage
-                .ROUTE_NAME,
-            arguments: movie
-                .id,
+            MovieDetailPage.ROUTE_NAME,
+            arguments: movie.id,
           );
         },
         child: Stack(
-          alignment: Alignment
-              .bottomLeft,
+          alignment: Alignment.bottomLeft,
           children: [
             Card(
               child: Container(
-                margin: const EdgeInsets
-                    .only(
+                margin: const EdgeInsets.only(
                   left: 16 + 80 + 16,
                   bottom: 8,
                   right: 8,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment
-                      .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie
-                          .title ?? '-',
+                      movie.title ?? '-',
                       maxLines: 1,
-                      overflow: TextOverflow
-                          .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    const SizedBox(
-                        height:
-                        16
-                    ),
+                    const SizedBox(height: 16),
                     Text(
-                      movie
-                          .overview ?? '-',
+                      movie.overview ?? '-',
                       maxLines: 2,
-                      overflow: TextOverflow
-                          .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
             ),
             Container(
-              margin: const EdgeInsets
-                  .only(
+              margin: const EdgeInsets.only(
                 left: 16,
                 bottom: 16,
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie
-                      .posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
                   width: 80,
-                  placeholder: (
-                      context,
-                      url)
-                  => const Center(
-                    child: CircularProgressIndicator(
-                    ),
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (
-                      context,
-                      url,
-                      error)
-                  => const
-                  Icon(
-                      Icons
-                          .error
-                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                borderRadius: const BorderRadius
-                    .all(
-                    Radius
-                        .circular(
-                        8)
-                ),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
             ),
           ],

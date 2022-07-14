@@ -2,148 +2,70 @@ import 'package:'
     'equatable'
     '/equatable.dart';
 
-
-
-class Movie
-    extends
-    Equatable {
-
-
-
+class Movie extends Equatable {
   Movie({
-    required
-    this
-        .adult,
-    required
-    this
-        .backdropPath,
-    required
-    this
-        .genreIds,
-    required
-    this
-        .id,
-    required
-    this
-        .originalTitle,
-    required
-    this
-        .overview,
-    required
-    this
-        .popularity,
-    required
-    this
-        .posterPath,
-    required
-    this
-        .releaseDate,
-    required
-    this
-        .title,
-    required
-    this
-        .video,
-    required
-    this
-        .voteAverage,
-    required
-    this
-        .voteCount,
+    required this.adult,
+    required this.backdropPath,
+    required this.genreIds,
+    required this.id,
+    required this.originalTitle,
+    required this.overview,
+    required this.popularity,
+    required this.posterPath,
+    required this.releaseDate,
+    required this.title,
+    required this.video,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
-
-
-  Movie
-      .watchlist({
-    required
-    this
-        .id,
-    required
-    this
-        .overview,
-    required
-    this
-        .posterPath,
-    required
-    this
-        .title,
+  Movie.watchlist({
+    required this.id,
+    required this.overview,
+    required this.posterPath,
+    required this.title,
   });
 
+  bool? adult;
 
+  String? backdropPath;
 
-  bool?
-  adult
-  ;
+  List<int>? genreIds;
 
-  String?
-  backdropPath
-  ;
+  int id;
 
-  List<int>?
-  genreIds
-  ;
+  String? originalTitle;
 
-  int
-  id
-  ;
+  String? overview;
 
-  String?
-  originalTitle
-  ;
+  double? popularity;
 
-  String?
-  overview
-  ;
+  String? posterPath;
 
-  double?
-  popularity
-  ;
+  String? releaseDate;
 
-  String?
-  posterPath
-  ;
+  String? title;
 
-  String?
-  releaseDate
-  ;
+  bool? video;
 
-  String?
-  title
-  ;
+  double? voteAverage;
 
-  bool?
-  video
-  ;
-
-  double?
-  voteAverage
-  ;
-
-  int?
-  voteCount
-  ;
-
-
-
+  int? voteCount;
 
   @override
-  List<
-      Object
-      ?> get
-  props => [
-    adult,
-    backdropPath,
-    genreIds,
-    id,
-    originalTitle,
-    overview,
-    popularity,
-    posterPath,
-    releaseDate,
-    title,
-    video,
-    voteAverage,
-    voteCount,
-  ];
+  List<Object?> get props => [
+        adult,
+        backdropPath,
+        genreIds,
+        id,
+        originalTitle,
+        overview,
+        popularity,
+        posterPath,
+        releaseDate,
+        title,
+        video,
+        voteAverage,
+        voteCount,
+      ];
 }

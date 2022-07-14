@@ -3,18 +3,14 @@ import 'package:'
     'flutter'
     '/material.dart';
 
-
 import 'package:'
     'flutter_bloc'
     '/flutter_bloc.dart';
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/common'
     '/constants.dart';
-
-
 
 //bloc package
 import 'package:'
@@ -25,164 +21,67 @@ import 'package:'
     '/search_tvseries'
     '/tvseries_search_bloc.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
     '/widgets'
     '/tvseries_card_list.dart';
 
-
-
-
-
-class
-SearchPageTvSeries
-    extends
-    StatelessWidget {
-
-
-  static
-  const ROUTE_NAME
-  = '/search-tvseries';
-
-
+class SearchPageTvSeries extends StatelessWidget {
+  static const ROUTE_NAME = '/search-tvseries';
 
   @override
-  Widget build(
-      BuildContext
-      context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            'Search'
-        ),
+        title: Text('Search'),
       ),
-
       body: Padding(
-        padding: const
-        EdgeInsets
-            .all(
-            16.0
-        ),
-
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment:
-          CrossAxisAlignment
-              .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              onSubmitted: (
-                  query
-                  ) {
-
+              onSubmitted: (query) {
                 context
-                    .read<
-                    TvseriesSearchBloc>(
-                )
-                    .add(
-                    TvseriesSearchQueryEvent(
-                        query)
-                );
-
-
+                    .read<TvseriesSearchBloc>()
+                    .add(TvseriesSearchQueryEvent(query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
-                prefixIcon:
-                Icon(
-                    Icons
-                        .search
-                ),
-
-                border: OutlineInputBorder(
-                ),
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(),
               ),
-
-              textInputAction:
-              TextInputAction
-                  .search,
+              textInputAction: TextInputAction.search,
             ),
-            SizedBox(
-                height:
-                16
-            ),
-
+            SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
             ),
-            BlocBuilder<
-                TvseriesSearchBloc,
-                TvseriesSearchState>(
-
-              builder: (
-                  context,
-                  state
-                  ) {
-
-                if (
-                state
-                is TvseriesSearchLoading
-                ) {
-
-                  return
-                    const Center(
-                    child: CircularProgressIndicator(
-                    ),
+            BlocBuilder<TvseriesSearchBloc, TvseriesSearchState>(
+              builder: (context, state) {
+                if (state is TvseriesSearchLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
-
-
-                } else if (
-                state
-                is TvseriesSearchLoaded
-                ) {
-
-                  final
-                  result
-                  = state
-                      .result;
-
+                } else if (state is TvseriesSearchLoaded) {
+                  final result = state.result;
 
                   return Expanded(
-                    child: ListView
-                        .builder(
-                      padding:
-                      const EdgeInsets
-                          .all(
-                          8
-                      ),
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(8),
+                      itemBuilder: (context, index) {
+                        final tvseries = state.result[index];
 
-                      itemBuilder: (
-                          context,
-                          index
-                          ) {
-
-                        final
-                        tvseries
-                        = state
-                            .result[
-                              index
-                        ];
-
-
-                        return
-                          TvSeriesCard(
-                              tvseries
-                          );
+                        return TvSeriesCard(tvseries);
                       },
-                      itemCount:
-                      result
-                          .length,
+                      itemCount: result.length,
                     ),
                   );
-
-
                 } else {
-                  return
-                    Expanded(
-                    child: Container(
-                    ),
+                  return Expanded(
+                    child: Container(),
                   );
                 }
               },

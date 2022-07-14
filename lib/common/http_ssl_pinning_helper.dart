@@ -1,206 +1,84 @@
-
 //normal package
 import 'dart:'
     'convert';
 
-
 import 'dart:'
     'developer';
 
-
 import 'dart:'
     'io';
-
-
 
 import 'package:'
     'flutter'
     '/services.dart';
 
-
 import 'package:'
     'http'
     '/http.dart' as http;
-
 
 import 'package:'
     'http'
     '/io_client.dart';
 
-
-
 class HttpSSLPiningHelper {
-  static
-  Future<
-      http
-          .Client>
-  get _instance
-  async =>
-      _clientInstance ??=
-      await createLEClient(
-      );
+  static Future<http.Client> get _instance async =>
+      _clientInstance ??= await createLEClient();
 
+  static http.Client? _clientInstance;
 
+  static http.Client get client => _clientInstance ?? http.Client();
 
-  static
-  http
-      .Client?
-  _clientInstance;
-
-
-  static
-  http
-      .Client
-  get client
-  => _clientInstance ?? http
-      .Client(
-  );
-
-
-
-  static
-  Future<
-      void>
-  init()
-  async {
-    _clientInstance
-    = await
-    _instance;
+  static Future<void> init() async {
+    _clientInstance = await _instance;
   }
 
-
-
-  static Future<
-      HttpClient>
-  customHttpClient({
-
-    bool
-    isTestMode
-    = false,
+  static Future<HttpClient> customHttpClient({
+    bool isTestMode = false,
   }) async {
-    SecurityContext
-    context =
-    SecurityContext(
-        withTrustedRoots:
-        false
-    );
-
+    SecurityContext context = SecurityContext(withTrustedRoots: false);
 
     try {
-      List<
-          int>
-      bytes = [
-      ];
+      List<int> bytes = [];
 
-
-
-      if (
-      isTestMode
-      ) {
-        bytes
-        = utf8
-            .encode(
-            _certificate
-        );
-
-
+      if (isTestMode) {
+        bytes = utf8.encode(_certificate);
       } else {
-        bytes
-        = (
-            await rootBundle
-                .load(
-                'certificates/certificate.cer'))
+        bytes = (await rootBundle.load('certificates/certificate.cer'))
             .buffer
-            .asUint8List(
-        );
+            .asUint8List();
       }
 
-
-      context
-          .setTrustedCertificatesBytes(
-          bytes
-      );
-
-
-    } on
-    TlsException
-    catch (
-    e
-    ) {
-      if (
-      e.osError?.message != null && e.osError!
-          .message
-          .contains(
-          'Certificate already in hash table')
-      ) {
-
-        log(
-            'createHttpClient() - certificate already trusted.'
-        );
-
-
+      context.setTrustedCertificatesBytes(bytes);
+    } on TlsException catch (e) {
+      if (e.osError?.message != null &&
+          e.osError!.message.contains('Certificate already in hash table')) {
+        log('createHttpClient() - certificate already trusted.');
       } else {
-        log(
-            'createHttpClient().setTrustedCertificateBytes EXCEPTION: $e'
-        );
-
+        log('createHttpClient().setTrustedCertificateBytes EXCEPTION: $e');
 
         rethrow;
       }
     } catch (e) {
-      log(
-          'unexpected error $e'
-      );
-
+      log('unexpected error $e');
 
       rethrow;
     }
-    HttpClient
-    httpClient
-    = HttpClient(
-        context:
-        context
-    );
+    HttpClient httpClient = HttpClient(context: context);
 
+    httpClient.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => false;
 
-    httpClient
-        .badCertificateCallback
-    = (
-        X509Certificate cert,
-        String host,
-        int port
-        ) => false;
-
-
-    return
-      httpClient;
-
+    return httpClient;
   }
 
-  static
-  Future<http
-      .Client>
-  createLEClient({
-    bool isTestMode
-    = false})
-  async {
-    IOClient client
-    = IOClient(
-        await customHttpClient(
-            isTestMode:
-            isTestMode)
-    );
+  static Future<http.Client> createLEClient({bool isTestMode = false}) async {
+    IOClient client = IOClient(await customHttpClient(isTestMode: isTestMode));
 
-
-    return
-      client;
-
+    return client;
   }
 }
 
-const
-_certificate =
-"""-----BEGIN CERTIFICATE-----
+const _certificate = """-----BEGIN CERTIFICATE-----
 MIIF5zCCBM+gAwIBAgIQAdKnBRs48TrGZbcfFRKNgDANBgkqhkiG9w0BAQsFADBG
 MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRUwEwYDVQQLEwxTZXJ2ZXIg
 Q0EgMUIxDzANBgNVBAMTBkFtYXpvbjAeFw0yMTEwMjEwMDAwMDBaFw0yMjExMTgy
@@ -234,7 +112,3 @@ jia+Kff2MpLspB3nHmHOZ2gvwU05oiZQvnranwshboDhCDV3ucFX4IKPr74+1P8l
 DUpiVEdsyxDA9Sbkc2QS57dWiD0Ju55Sxhhd1uSHi4aqKaFpAA4XZr4edUwWFE4c
 4JJi1ufB/lOcf+G5uV2HrO27/FScF/8dZyzy
 -----END CERTIFICATE-----""";
-
-
-
-

@@ -4,24 +4,12 @@ import 'package:'
     '/repositories'
     '/tvseries_repository.dart';
 
-
-
 class GetWatchListStatusTvSeries {
-  final
-  TvSeriesRepository
-  repository;
+  final TvSeriesRepository repository;
 
-  GetWatchListStatusTvSeries(
-      this.repository
-      );
+  GetWatchListStatusTvSeries(this.repository);
 
-  Future<bool>
-  execute(
-      int id)
-  async {
-    return repository
-        .isAddedToWatchlistTvSeries(
-        id
-    );
+  Future<bool> execute(int id) async {
+    return repository.isAddedToWatchlistTvSeries(id);
   }
 }

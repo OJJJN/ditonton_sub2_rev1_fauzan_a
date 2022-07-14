@@ -4,132 +4,62 @@ import 'package:'
     '/entities'
     '/genre.dart';
 
-
 import 'package:'
     'equatable'
     '/equatable.dart';
 
-
-
-class MovieDetail
-    extends
-    Equatable {
+class MovieDetail extends Equatable {
   const MovieDetail({
-    required
-    this
-        .adult,
-    required
-    this
-        .backdropPath,
-    required
-    this
-        .genres,
-    required
-    this
-        .id,
-    required
-    this
-        .originalTitle,
-    required
-    this
-        .overview,
-    required
-    this
-        .posterPath,
-    required
-    this
-        .releaseDate,
-    required
-    this
-        .runtime,
-    required
-    this
-        .title,
-    required
-    this
-        .voteAverage,
-    required
-    this
-        .voteCount,
+    required this.adult,
+    required this.backdropPath,
+    required this.genres,
+    required this.id,
+    required this.originalTitle,
+    required this.overview,
+    required this.posterPath,
+    required this.releaseDate,
+    required this.runtime,
+    required this.title,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
-  final
-  bool
-  adult
-  ;
+  final bool adult;
 
-  final
-  String?
-  backdropPath
-  ;
+  final String? backdropPath;
 
-  final
-  List<
-      Genre>
-  genres
-  ;
+  final List<Genre> genres;
 
-  final
-  int
-  id
-  ;
+  final int id;
 
-  final
-  String
-  originalTitle
-  ;
+  final String originalTitle;
 
-  final
-  String
-  overview
-  ;
+  final String overview;
 
-  final
-  String
-  posterPath
-  ;
+  final String posterPath;
 
-  final
-  String
-  releaseDate
-  ;
+  final String releaseDate;
 
-  final
-  int
-  runtime
-  ;
+  final int runtime;
 
-  final
-  String
-  title
-  ;
+  final String title;
 
-  final
-  double
-  voteAverage
-  ;
+  final double voteAverage;
 
-  final
-  int
-  voteCount
-  ;
+  final int voteCount;
 
   @override
-  List<
-      Object
-      ?> get
-  props
-  => [
-    adult,
-    backdropPath,
-    genres,
-    id,
-    originalTitle,
-    overview,
-    posterPath,
-    releaseDate,
-    title,
-    voteAverage,
-    voteCount,
-  ];
+  List<Object?> get props => [
+        adult,
+        backdropPath,
+        genres,
+        id,
+        originalTitle,
+        overview,
+        posterPath,
+        releaseDate,
+        title,
+        voteAverage,
+        voteCount,
+      ];
 }

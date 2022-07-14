@@ -1,15 +1,11 @@
 import 'package:dartz'
     '/dartz.dart';
 
-
-
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/domain'
     '/entities'
     '/movie.dart';
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
@@ -17,28 +13,12 @@ import 'package:'
     '/repositories'
     '/movie_repository.dart';
 
-
-
 class GetPopularMovies {
-  final
-  MovieRepository
-  repository
-  ;
+  final MovieRepository repository;
 
-  GetPopularMovies(
-      this
-          .repository
-      );
+  GetPopularMovies(this.repository);
 
-  Future<
-      Either<
-      dynamic,
-          List<Movie>>>
-  execute(
-      ) {
-    return
-      repository
-          .getPopularMovies(
-      );
+  Future<Either<dynamic, List<Movie>>> execute() {
+    return repository.getPopularMovies();
   }
 }

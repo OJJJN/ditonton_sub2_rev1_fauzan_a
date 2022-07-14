@@ -2,15 +2,11 @@ import 'package:'
     'dartz'
     '/dartz.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/domain'
     '/entities'
     '/tvseries_detail.dart';
-
-
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
@@ -18,29 +14,12 @@ import 'package:'
     '/repositories'
     '/tvseries_repository.dart';
 
-
-
 class GetTvSeriesDetail {
-  final
-  TvSeriesRepository
-  repository;
+  final TvSeriesRepository repository;
 
-  GetTvSeriesDetail(
-      this.repository
-      );
+  GetTvSeriesDetail(this.repository);
 
-  Future<
-      Either<
-          dynamic,
-          TvSeriesDetail>>
-  execute(
-      int id
-      ) {
-
-    return
-      repository
-        .getTvSeriesDetail(
-        id
-    );
+  Future<Either<dynamic, TvSeriesDetail>> execute(int id) {
+    return repository.getTvSeriesDetail(id);
   }
 }

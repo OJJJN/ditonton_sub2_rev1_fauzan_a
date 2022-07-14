@@ -2,13 +2,11 @@ import 'package:'
     'bloc'
     '/bloc.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/domain'
     '/entities'
     '/movie.dart';
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
@@ -16,70 +14,31 @@ import 'package:'
     '/usecases'
     '/get_top_rated_movies.dart';
 
-
 import 'package:'
     'equatable'
     '/equatable.dart';
 
-
-
 part 'movie_top_rated_event.dart';
-
 
 part 'movie_top_rated_state.dart';
 
-
-
-class MovieTopRatedBloc
-    extends Bloc<
-        MovieTopRatedEvent,
-        MovieTopRatedState> {
-
-  final
-  GetTopRatedMovies
-  getTopRatedMovies;
-
-
+class MovieTopRatedBloc extends Bloc<MovieTopRatedEvent, MovieTopRatedState> {
+  final GetTopRatedMovies getTopRatedMovies;
 
   MovieTopRatedBloc(
-      this
-          .getTopRatedMovies,
-      ) : super(
-      MovieTopRatedEmpty()) {
-    on<
-        MovieTopRatedGetEvent>((
-        event,
-        emit)
-    async {
-      emit(
-          MovieTopRatedLoading(
-          )
-      );
+    this.getTopRatedMovies,
+  ) : super(MovieTopRatedEmpty()) {
+    on<MovieTopRatedGetEvent>((event, emit) async {
+      emit(MovieTopRatedLoading());
 
+      final result = await getTopRatedMovies.execute();
 
-      final
-      result
-      = await getTopRatedMovies
-          .execute(
-      );
-
-
-      result
-          .fold(
-            (
-            failure) {
-          emit(
-              MovieTopRatedError(
-                  failure
-                      .message)
-          );
+      result.fold(
+        (failure) {
+          emit(MovieTopRatedError(failure.message));
         },
-            (
-            data) {
-          emit(
-              MovieTopRatedLoaded(
-                  data)
-          );
+        (data) {
+          emit(MovieTopRatedLoaded(data));
         },
       );
     });

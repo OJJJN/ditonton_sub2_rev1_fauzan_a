@@ -5,143 +5,73 @@ import 'package:'
     '/common'
     '/constants.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
     '/pages'
-    '/watchlist_movies_page.dart'
-    show WatchlistMoviesPage;
-
+    '/watchlist_movies_page.dart' show WatchlistMoviesPage;
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/presentation'
     '/pages'
     '/tvseries'
-    '/watchlist_tvseries_page.dart'
-    show WatchlistTvSeriesPage;
-
+    '/watchlist_tvseries_page.dart' show WatchlistTvSeriesPage;
 
 import 'package:'
     'flutter'
     '/material.dart';
 
+class WatchlistPage extends StatelessWidget {
+  static const ROUTE_NAME = '/watchlistPage';
 
-
-class
-WatchlistPage
-    extends
-    StatelessWidget {
-  static
-  const
-  ROUTE_NAME
-  = '/watchlistPage';
-
-
-
-  const
-  WatchlistPage(
-      {Key? key}
-      ) : super(
-      key: key
-  );
-
-
+  const WatchlistPage({Key? key}) : super(key: key);
 
   @override
-  Widget
-  build(
-      BuildContext
-      context
-      ) {
+  Widget build(BuildContext context) {
     return DefaultTabController(
-      length:
-      2,
+      length: 2,
       child: Scaffold(
           body: NestedScrollView(
-            headerSliverBuilder: (
-                BuildContext context,
-                bool innerBoxIsScrolled
-                ) {
-
-              return <
-                  Widget>[
-                SliverAppBar(
-                  title:
-                  const Text(
-                      'Watchlist'
-                  ),
-                  pinned:
-                  true,
-                  floating:
-                  true,
-                  bottom: TabBar(
-                    unselectedLabelColor:
-                    kGrey,
-                    labelColor:
-                    kMikadoYellow,
-                    indicatorColor:
-                    kGreenColor,
-                    tabs: [
-                      _buildTabBarItem(
-                          'Movies',
-                          Icons
-                              .local_movies_outlined
-                      ),
-
-                      _buildTabBarItem(
-                          'TV Series',
-                          Icons
-                              .live_tv_sharp
-                      ),
-                    ],
-                  ),
-                ),
-              ];
-            },
-
-            body: TabBarView(
-              children: <
-                  Widget>[
-                WatchlistMoviesPage(
-                ),
-                WatchlistTvSeriesPage(
-                ),
-              ],
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: const Text('Watchlist'),
+              pinned: true,
+              floating: true,
+              bottom: TabBar(
+                unselectedLabelColor: kGrey,
+                labelColor: kMikadoYellow,
+                indicatorColor: kGreenColor,
+                tabs: [
+                  _buildTabBarItem('Movies', Icons.local_movies_outlined),
+                  _buildTabBarItem('TV Series', Icons.live_tv_sharp),
+                ],
+              ),
             ),
-          )),
+          ];
+        },
+        body: TabBarView(
+          children: <Widget>[
+            WatchlistMoviesPage(),
+            WatchlistTvSeriesPage(),
+          ],
+        ),
+      )),
     );
   }
 
-  Widget _buildTabBarItem(String title,
-      IconData
-      iconData)
-  => Padding(
-    padding:
-    const
-    EdgeInsets
-        .only(
-        top: 4.0,
-        bottom: 12.0
-    ),
-
-    child: Row(
-      mainAxisAlignment:
-      MainAxisAlignment
-          .center,
-      children: [
-        Icon(
-            iconData
+  Widget _buildTabBarItem(String title, IconData iconData) => Padding(
+        padding: const EdgeInsets.only(top: 4.0, bottom: 12.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(iconData),
+            const SizedBox(
+              width: 12.0,
+            ),
+            Text(title),
+          ],
         ),
-        const SizedBox(
-          width:
-          12.0,
-        ),
-        Text(
-            title
-        ),
-      ],
-    ),
-  );
+      );
 }

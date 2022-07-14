@@ -2,15 +2,11 @@ import 'package:'
     'dartz'
     '/dartz.dart';
 
-
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
     '/domain'
     '/entities'
     '/tvseries.dart';
-
-
-
 
 import 'package:'
     'ditonton_sub2_rev1_fauzan_a'
@@ -18,28 +14,12 @@ import 'package:'
     '/repositories'
     '/tvseries_repository.dart';
 
-
-
 class GetWatchlistTvSeries {
-  final
-  TvSeriesRepository
-  _repository;
+  final TvSeriesRepository _repository;
 
+  GetWatchlistTvSeries(this._repository);
 
-  GetWatchlistTvSeries(
-      this
-          ._repository
-      );
-
-  Future<
-      Either<
-          dynamic,
-          List<
-              TvSeries>>>
-  execute() {
-    return
-      _repository
-        .getWatchlistTvSeries(
-    );
+  Future<Either<dynamic, List<TvSeries>>> execute() {
+    return _repository.getWatchlistTvSeries();
   }
 }
